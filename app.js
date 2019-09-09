@@ -11,12 +11,14 @@ var express = require('express'),
 app.listen(port);
 console.log('Server started! At http://localhost:' + port);
 
+var corsOptions = {
+    origin: 'http://example.com',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
 
+app.use(cors(corsOptions));
 
-
-app.use(cors(corsOptions))
-
-app.all('/mockResponse',function(req,res){
+app.get('/mockResponse',corsOptions,function(req,res){
     var status = req.headers.status;
     if(statusCodes.indexOf(status) !== -1){
         res.status(status);
