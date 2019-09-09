@@ -1,6 +1,7 @@
 
 var express = require('express'),
     app = express(),
+    cors = require("cors"),
     port = process.env.PORT || 8080;
     statusCodes = ["500","501","502","503","504"];
 
@@ -11,8 +12,13 @@ app.listen(port);
 console.log('Server started! At http://localhost:' + port);
 
 
+corsOptions = {
+    methods: ["GET"],
+}
 
-app.all('/mockResponse',function(req,res){
+
+app.options("/mockResponse",cors(corsOptions));
+app.get('/mockResponse',cors(corsOptions),function(req,res){
     var status = req.headers.status;
     if(statusCodes.indexOf(status) !== -1){
         res.status(status);
