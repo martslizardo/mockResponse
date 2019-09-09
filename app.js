@@ -18,7 +18,7 @@ corsOptions = {
 
 
 app.options("/mockResponse",cors(corsOptions));
-app.get('/mockResponse',cors(corsOptions),function(req,res){
+app.get('/mockResponse',function(req,res){
     var status = req.headers.status;
     if(statusCodes.indexOf(status) !== -1){
         res.status(status);
