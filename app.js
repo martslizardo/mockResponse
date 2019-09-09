@@ -12,12 +12,11 @@ app.listen(port);
 console.log('Server started! At http://localhost:' + port);
 
 
-corsOptions = {
-    methods: ["GET"],
-}
 
 
-app.all('/mockResponse',cors(corsOptions),function(req,res){
+app.use(cors(corsOptions))
+
+app.all('/mockResponse',function(req,res){
     var status = req.headers.status;
     if(statusCodes.indexOf(status) !== -1){
         res.status(status);
