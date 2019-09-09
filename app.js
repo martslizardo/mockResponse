@@ -3,7 +3,7 @@ var express = require('express'),
     app = express(),
     cors = require("cors"),
     port = process.env.PORT || 8080;
-    statusCodes = ["500","501","502","503","504"];
+    statusCodes = ["405","500","501","502","503","504"];
 
 // routes will go here
 
